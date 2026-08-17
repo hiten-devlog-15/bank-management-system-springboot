@@ -2,12 +2,14 @@ package com.hiten.bank_management_system.entity;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
 @Table(name = "customers")
+@ToString
 public class Customer {
 
     @Id
