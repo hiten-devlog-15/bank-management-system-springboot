@@ -33,4 +33,13 @@ public class Account {
 
     @Column(name = "created_at")
     private LocalDate createdAt;
+
+    public Account(Customer customer, AccountType accountType, double currentBalance,
+                   AccountStatus accountStatus, LocalDate createdAt){
+        this.customer = customer;
+        this.accountType = accountType;
+        this.currentBalance = currentBalance;
+        this.accountStatus = accountStatus;
+        this.createdAt = createdAt;
+    }
 }
