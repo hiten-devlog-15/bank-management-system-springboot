@@ -13,14 +13,14 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transaction_id")
-    private long transactionId;
+    private Long transactionId;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "transaction_type")
+    @Column(name = "transaction_type", columnDefinition = "transaction_type")
     private TransactionType transactionType;
 
     @Column(name = "amount")
