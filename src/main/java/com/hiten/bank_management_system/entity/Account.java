@@ -3,6 +3,7 @@ package com.hiten.bank_management_system.entity;
 import com.hiten.bank_management_system.enums.AccountStatus;
 import com.hiten.bank_management_system.enums.AccountType;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @Table(name = "accounts")
+@Getter
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,7 @@
 package com.hiten.bank_management_system.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Table(name = "customers")
 @ToString
+@Getter
 public class Customer {
 
     @Id
