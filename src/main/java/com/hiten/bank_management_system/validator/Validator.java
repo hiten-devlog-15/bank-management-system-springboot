@@ -56,7 +56,7 @@ public class Validator {
     }
 
     public boolean verifyPassword(Long customerId, String password){
-        Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found"));
+        Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Wrong Password"));
         if(password.equals(customer.getPassword())){
             return true;
         }
