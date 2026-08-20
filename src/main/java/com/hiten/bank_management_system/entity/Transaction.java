@@ -31,4 +31,13 @@ public class Transaction {
 
     @Column(name = "balance_after_transaction")
     private double balanceAfterTransaction;
+
+    public Transaction(Account account, TransactionType transactionType, double amount, LocalDate date,
+                       double balanceAfterTransaction){
+        this.account=account;
+        this.transactionType=transactionType;
+        this.amount=amount;
+        this.date=date;
+        this.balanceAfterTransaction=balanceAfterTransaction;
+    }
 }
