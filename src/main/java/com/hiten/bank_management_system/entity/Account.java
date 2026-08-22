@@ -44,4 +44,12 @@ public class Account {
         this.accountStatus = accountStatus;
         this.createdAt = createdAt;
     }
+
+    public void deposit(double amount) {
+        currentBalance += amount;
+    }
+
+    public void withdraw(double amount) {
+        currentBalance -= amount;
+    }
 }
