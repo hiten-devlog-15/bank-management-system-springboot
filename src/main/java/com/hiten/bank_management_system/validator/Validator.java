@@ -2,6 +2,7 @@ package com.hiten.bank_management_system.validator;
 
 import com.hiten.bank_management_system.entity.Account;
 import com.hiten.bank_management_system.entity.Customer;
+import com.hiten.bank_management_system.enums.AccountStatus;
 import com.hiten.bank_management_system.enums.AccountType;
 import com.hiten.bank_management_system.repository.AccountRepository;
 import com.hiten.bank_management_system.repository.CustomerRepository;
@@ -55,6 +56,13 @@ public class Validator {
         return false;
     }
 
+    public boolean isAccountActive(Account account){
+        if(account.getAccountStatus() == AccountStatus.ACTIVE){
+            return true;
+        }
+        return false;
+    }
+
     public boolean verifyPassword(Long customerId, String password){
         Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Wrong Password"));
         if(password.equals(customer.getPassword())){
@@ -63,8 +71,7 @@ public class Validator {
         return false;
     }
 
-    public boolean hasSufficientBalance(Long accountId, double amount){
-        Account account = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found"));
+    public boolean hasSufficientBalance(Account account, double amount){
         if(account.getCurrentBalance() >= amount){
             return true;
         }
