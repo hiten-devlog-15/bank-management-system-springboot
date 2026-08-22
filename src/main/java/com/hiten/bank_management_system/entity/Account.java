@@ -52,4 +52,8 @@ public class Account {
     public void withdraw(double amount) {
         currentBalance -= amount;
     }
+
+    public void closeAccount(){
+        accountStatus = AccountStatus.CLOSED;
+    }
 }

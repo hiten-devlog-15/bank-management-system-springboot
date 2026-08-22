@@ -82,4 +82,13 @@ public class AccountService {
         transactionService.createTransaction(senderAccount, TransactionType.TRANSFER_OUT, amount);
         transactionService.createTransaction(receiverAccount, TransactionType.TRANSFER_IN, amount);
     }
+
+    public void closeAccount(Long accountId, String password){
+        Account account = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found"));
+        if(!validator.isAccountActive(account) || !validator.verifyPassword(account.getCustomer().getCustomerId(), password) || account.getCurrentBalance() > 0){
+            throw new RuntimeException("Cannot close account");
+        }
+        account.closeAccount();
+        accountRepository.save(account);
+    }
 }
