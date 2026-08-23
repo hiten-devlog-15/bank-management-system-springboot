@@ -9,6 +9,7 @@ import com.hiten.bank_management_system.repository.AccountRepository;
 import com.hiten.bank_management_system.repository.CustomerRepository;
 import com.hiten.bank_management_system.repository.TransactionRepository;
 import com.hiten.bank_management_system.validator.Validator;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -62,6 +63,7 @@ public class AccountService {
         transactionService.createTransaction(account, TransactionType.WITHDRAW, amount);
     }
 
+    @Transactional
     public void transfer(Long senderAccountId, Long receiverAccountId, double amount, String password){
         Account senderAccount = accountRepository.findById(senderAccountId).orElseThrow(() ->
                 new RuntimeException("Sender Account not found"));
