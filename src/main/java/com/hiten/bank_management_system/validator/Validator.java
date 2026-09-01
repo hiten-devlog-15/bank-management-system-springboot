@@ -78,4 +78,10 @@ public class Validator {
         return false;
     }
 
+    public boolean existsCustomer(Long customerId){
+        if(customerRepository.existsById(customerId)){
+            return true;
+        }
+        return false;
+    }
 }

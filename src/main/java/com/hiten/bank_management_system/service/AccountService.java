@@ -7,13 +7,11 @@ import com.hiten.bank_management_system.enums.AccountType;
 import com.hiten.bank_management_system.enums.TransactionType;
 import com.hiten.bank_management_system.repository.AccountRepository;
 import com.hiten.bank_management_system.repository.CustomerRepository;
-import com.hiten.bank_management_system.repository.TransactionRepository;
 import com.hiten.bank_management_system.validator.Validator;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -92,5 +90,16 @@ public class AccountService {
         }
         account.closeAccount();
         accountRepository.save(account);
+    }
+
+    public Account getAccount(Long accountId) {
+        return accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found"));
+    }
+
+    public List<Account> getAllAccounts(Long customerId){
+        if (!validator.existsCustomer(customerId)){
+            throw new RuntimeException("Customer not found");
+        }
+        return accountRepository.findByCustomer_CustomerId(customerId);
     }
 }

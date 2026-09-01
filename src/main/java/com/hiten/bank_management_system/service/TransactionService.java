@@ -10,6 +10,7 @@ import com.hiten.bank_management_system.validator.Validator;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class TransactionService {
 
@@ -30,4 +31,10 @@ public class TransactionService {
         return transaction;
     }
 
+    public List<Transaction> getTransactions(Long accountId){
+        if(!validator.isAccountValid(accountId)){
+            throw new RuntimeException("Account not found");
+        }
+        return transactionRepository.findByAccount_AccountId(accountId);
+    }
 }
