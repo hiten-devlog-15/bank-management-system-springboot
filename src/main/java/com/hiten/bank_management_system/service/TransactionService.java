@@ -4,14 +4,14 @@ import com.hiten.bank_management_system.entity.Account;
 import com.hiten.bank_management_system.entity.Transaction;
 import com.hiten.bank_management_system.enums.TransactionType;
 import com.hiten.bank_management_system.repository.AccountRepository;
-import com.hiten.bank_management_system.repository.CustomerRepository;
 import com.hiten.bank_management_system.repository.TransactionRepository;
 import com.hiten.bank_management_system.validator.Validator;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
