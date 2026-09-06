@@ -5,6 +5,8 @@ import com.hiten.bank_management_system.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 
@@ -23,14 +25,16 @@ public class Account {
     private Customer customer;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "account_type", columnDefinition = "account_category")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "account_type")
     private AccountType accountType;
 
     @Column(name = "current_balance")
     private double currentBalance;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "account_status", columnDefinition = "account_status")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "account_status")
     private AccountStatus accountStatus;
 
     @Column(name = "created_at")

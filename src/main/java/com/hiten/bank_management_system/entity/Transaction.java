@@ -3,6 +3,8 @@ package com.hiten.bank_management_system.entity;
 import com.hiten.bank_management_system.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 
@@ -20,7 +22,8 @@ public class Transaction {
     private Account account;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "transaction_type", columnDefinition = "transaction_type")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "transaction_type")
     private TransactionType transactionType;
 
     @Column(name = "amount")
