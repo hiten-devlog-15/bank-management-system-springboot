@@ -1,6 +1,7 @@
 package com.hiten.bank_management_system.service;
 
 import com.hiten.bank_management_system.entity.Customer;
+import com.hiten.bank_management_system.exception.CustomerNotFoundException;
 import com.hiten.bank_management_system.repository.CustomerRepository;
 import com.hiten.bank_management_system.validator.Validator;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,6 @@ public class CustomerService {
     }
 
     public Customer getCustomer(Long customerId){
-        return customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found"));
+        return customerRepository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException("Customer not found"));
     }
 }
