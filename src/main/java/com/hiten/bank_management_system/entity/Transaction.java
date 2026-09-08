@@ -2,6 +2,8 @@ package com.hiten.bank_management_system.entity;
 
 import com.hiten.bank_management_system.enums.TransactionType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -11,6 +13,7 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @Table(name = "transactions")
+@Getter
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
