@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Setter
 @Getter
 public class CustomerResponse {
     private Long customerId;

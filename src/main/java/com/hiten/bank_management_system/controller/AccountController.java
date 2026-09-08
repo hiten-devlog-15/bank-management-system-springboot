@@ -1,6 +1,9 @@
 package com.hiten.bank_management_system.controller;
 
+import com.hiten.bank_management_system.dto.AccountRequest;
 import com.hiten.bank_management_system.entity.Account;
+import com.hiten.bank_management_system.mapper.AccountMapper;
+import com.hiten.bank_management_system.dto.AccountResponse;
 import com.hiten.bank_management_system.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,20 +11,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/accounts")
 public class AccountController {
     private final AccountService accountService;
+    private final AccountMapper accountMapper;
 
-    public AccountController(AccountService accountService) {
+    public AccountController(AccountService accountService, AccountMapper accountMapper) {
         this.accountService = accountService;
+        this.accountMapper = accountMapper;
     }
 
     @GetMapping("/{accountId}")
-    public Account getAccount(@PathVariable Long accountId){
-        return accountService.getAccount(accountId);
+    public AccountResponse getAccount(@PathVariable Long accountId){
+        Account account = accountService.getAccount(accountId);
+        return accountMapper.toResponse(account);
     }
 
     @PostMapping
-    public Account createAccount(@RequestBody Account account){
-        return accountService.createAccount(account.getCustomer().getCustomerId(), account.getAccountType(),
-                account.getCurrentBalance());
+    public AccountResponse createAccount(@RequestBody AccountRequest accountRequest){
+        Account account = accountService.createAccount(accountRequest.getCustomerId(), accountRequest.getAccountType(),
+                accountRequest.getInitialDeposit());
+        return accountMapper.toResponse(account);
     }
 
     @PostMapping("/{accountId}/deposit")
